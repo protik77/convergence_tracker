@@ -11,7 +11,7 @@ class TestInputs(unittest.TestCase):
         Attempts to read a POSCAR from the current directory.
         Test is passed if the POSCAR file is read successfully.
         '''
-        self.ct = convergence_tracker()
+        self.ct = ConvergenceTracker()
         self.assertTrue(isinstance(self.ct.read_structure(), ase.atoms.Atoms))
 
     def test_path_structure(self):
@@ -19,7 +19,7 @@ class TestInputs(unittest.TestCase):
 
         In order to pass this test, put a structure file in the upper directory.
         '''
-        self.ct = convergence_tracker('../POSCAR')
+        self.ct = ConvergenceTracker('../POSCAR')
         self.assertTrue(isinstance(self.ct.read_structure(), ase.atoms.Atoms))
 
 if __name__ == '__main__':
