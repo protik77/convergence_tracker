@@ -1,6 +1,6 @@
 from ase.io import read
 
-class convergence_tracker():
+class ConvergenceTracker():
     ''' Class for tracking convergence.
 
     The class takes three inputs. These are
