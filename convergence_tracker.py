@@ -4,14 +4,15 @@ class convergence_tracker():
     ''' Class for tracking convergence.
 
     The class takes three inputs. These are
-    structure_path: path of structure along with the structure name.
+    structure_path: path of structure along with the structure name. Default
+    is a POSCAR file in the current directory
     cutoff: energy cutoff. If not provided, default is 550eV which is enough for
     most pseudopotentials in vasp
     calculator: DFT tool to be used for the convergence. Default is vasp. For
     other calculators, will raise NotImplementedError.
     '''
 
-    def __init__(self, structure_path, calculator='vasp', convergence_th=1E-3, cutoff=550):
+    def __init__(self, structure_path='POSCAR', calculator='vasp', convergence_th=1E-3, cutoff=550):
 
         self.calculator = calculator
         self.convergence_th = convergence_th
@@ -21,12 +22,11 @@ class convergence_tracker():
     def read_structure(self):
         ''' Reads structure from the path given
 
-        Will check if the file exists. If exists, then will use ase.io.read
-        to read the structure. WIll support all structure formats supported by
-        ASE.
+        ase.io.read function will be used to read the structure.
+        WIll support all structure formats supported by ASE.
         '''
 
-        pass
+        return read(self.structure_path)
 
     def scale_kpoints(self):
         ''' Will return a list with scaling of correspondin k-point.
