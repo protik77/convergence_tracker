@@ -22,12 +22,15 @@ ct.run_convergence_tracker()
 ```
 
 Other aspects:
+
 * Maximum 500 iterations.
 
 Current features:
+
 * Can read any structure supported by ASE.
 * Can scale `KPOINTS` based on the lattice constants.
 
 Features in progress:
+
 * Printing information in each step
 * Loggin information
