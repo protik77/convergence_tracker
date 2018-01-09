@@ -103,16 +103,17 @@ class ConvergenceTracker():
 
         return calc_obj
 
-    def run_convergence(self):
+    def run_convergence_tracker(self):
         '''Runs calculations and checks for convergence.
 
         Runs calculation for each of the k-points and checks for convergence.
         Returns list of converged k-points.
         '''
 
-        # dummy value for initial value of energy
+        # dummy value for initial k-points
         initial_kpoints = [1, 1, 1]
         old_kp = initial_kpoints
+
         scaling_factor = self.scale_kpoints()
 
         for iteration in range(self.max_iter):
