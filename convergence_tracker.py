@@ -133,6 +133,8 @@ class ConvergenceTracker():
 
             energy = structure.get_potential_energy()
 
+            calc.clean()
+
             if iteration > 0 and abs(energy - old_energy) < self.convergence_th :
                 return this_kp
             else:

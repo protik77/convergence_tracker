@@ -18,7 +18,7 @@ from convergence_tracker import ConvergenceTracker
 
 ct = ConvergenceTracker()
 
-ct.run_convergence_tracker()
+converged_kpoints = ct.run_convergence_tracker()
 ```
 
 Other aspects:
