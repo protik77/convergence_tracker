@@ -32,5 +32,5 @@ Current features:
 
 Features in progress:
 
-* Printing information in each step
-* Loggin information
+* Printing information in each step.
+* Logging information.
