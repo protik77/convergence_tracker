@@ -9,7 +9,7 @@ The class take the following inputs:
 
 * structure_path (**default**: `POSCAR` file in the current directory): The input structure name with file path.
 * calculator (**default**: `VASP`): Calculator to be used. Right now supports only `VASP`.
-* convergence_th (**default**: `1E-3`eV): Convergence threshold for the tracker. If the change of energy between two consecutive calculations is less than this, the `KPOINTS` is assumed a converged one.
+* convergence_th (**default**: `1E-3`eV): Convergence threshold for the tracker. If the change of energy between two consecutive calculations is equal to less than this, the `KPOINTS` is assumed a converged one.
 * cutoff (**default**: `550`eV): Cut-off energy for the wavefunctions.
 
 Usage:
