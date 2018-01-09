@@ -135,7 +135,7 @@ class ConvergenceTracker():
 
             calc.clean()
 
-            if iteration > 0 and abs(energy - old_energy) < self.convergence_th :
+            if iteration > 0 and abs(energy - old_energy) <= self.convergence_th :
                 return this_kp
             else:
                 old_kp = this_kp
