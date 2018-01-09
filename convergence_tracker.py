@@ -1,6 +1,6 @@
 from ase.io import read
 from pymatgen.io.ase import AseAtomsAdaptor
-from math import ceil
+from math import floor, ceil
 from ase.calculators.vasp import Vasp
 
 class ConvergenceTracker():
@@ -60,7 +60,7 @@ class ConvergenceTracker():
 
         lat_const = self.get_lattice_constants()
 
-        return [ceil(z / min(lat_const)) for z in lat_const]
+        return [floor(z / min(lat_const)) for z in lat_const]
 
     def get_new_kpoints(self, old_kpoints, scaling_factor, inc=2):
         '''Gets new k-points from old k-points by increasing from the earlier
