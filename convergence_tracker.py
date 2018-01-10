@@ -22,6 +22,9 @@ class ConvergenceTracker():
         self.structure_path = structure_path
         self.cutoff = cutoff  # in eV
         self.max_iter = 500 # maximum number of iteration
+        self.verbose = True
+        self.kpoints_list = []
+        self.energies_list = []
 
     def read_structure(self):
         ''' Reads structure from the path given
@@ -56,6 +59,9 @@ class ConvergenceTracker():
         larger compared to any other direction, then k-points needed for that
         direction is half. This function will check for such properties and
         returns a list for scaling the k-points.
+
+        For example, if the lattice constants of a structure is (5,10,15)
+        then scaling factor returned by the structure will be (1,2,3)
         '''
 
         lat_const = self.get_lattice_constants()
@@ -103,6 +109,22 @@ class ConvergenceTracker():
 
         return calc_obj
 
+    def print_information(self, iteration, energy, old_energy):
+        ''' Prints information in each iteration
+
+        :param iteration: iteration number. adds 1 to it.
+        :param energy: energy of this iteration
+        :param old_energy: energy of earlier iteration
+        '''
+
+        # write header if it's first iteration
+        if iteration == 0:
+            print('{:12} {:16} {:17}'.format('iteration', 'energy (eV)', 'dE'))
+
+        de = energy - old_energy
+
+        print('{:8} {:15.5e} {:11.3e}'.format(iteration+1, energy, de))
+
     def run_convergence_tracker(self):
         '''Runs calculations and checks for convergence.
 
@@ -113,6 +135,7 @@ class ConvergenceTracker():
         # dummy value for initial k-points
         initial_kpoints = [1, 1, 1]
         old_kp = initial_kpoints
+        old_energy = 0.0
 
         scaling_factor = self.scale_kpoints()
 
@@ -135,6 +158,11 @@ class ConvergenceTracker():
 
             calc.clean()
 
+            if self.verbose:
+                self.print_information(iteration, energy, old_energy)
+
+            self.logger(this_kp, energy)
+
             if iteration > 0 and abs(energy - old_energy) <= self.convergence_th :
                 return this_kp
             else:
@@ -145,13 +173,23 @@ class ConvergenceTracker():
                 raise RuntimeError('Reached maximum iteration without convergence.')
 
 
-    def logger(self):
+    def logger(self, this_kp, energy):
         '''Logs k-points and energy for each iteration.
 
         Stores k-points and energy for each iteration in two lists.
         '''
 
-        pass
+        self.kpoints_list.append(this_kp)
+        self.energies_list.append(energy)
+
+    def print_log(self):
+        '''This method can be used to print list of k-points and energies used
+        for the convergence tracker.
+
+        '''
+
+        for idx, kp in enumerate(self.kpoints_list):
+            self.print_information(idx, kp, self.energies_list[idx])
 
     def get_log(self):
         '''This method can be used to get list of k-points and energies used
@@ -159,6 +197,4 @@ class ConvergenceTracker():
 
         '''
 
-        pass
-
-
+        return self.kpoints_list, self.energies_list
