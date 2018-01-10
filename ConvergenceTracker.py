@@ -3,6 +3,7 @@ from pymatgen.io.ase import AseAtomsAdaptor
 from math import floor, ceil
 from ase.calculators.vasp import Vasp
 
+
 class ConvergenceTracker():
     ''' Class for tracking convergence.
 
@@ -109,21 +110,22 @@ class ConvergenceTracker():
 
         return calc_obj
 
-    def print_information(self, iteration, energy, old_energy):
+    def print_information(self, iteration, this_kp, energy, old_energy):
         ''' Prints information in each iteration
 
         :param iteration: iteration number. adds 1 to it.
+        :param this_kp: k-points for this iteration
         :param energy: energy of this iteration
         :param old_energy: energy of earlier iteration
         '''
 
         # write header if it's first iteration
         if iteration == 0:
-            print('{:12} {:16} {:17}'.format('iteration', 'energy (eV)', 'dE'))
+            print('{:10} {:12} {:16} {:17}'.format('iteration', 'k-points', 'energy (eV)', 'dE'))
 
         de = energy - old_energy
 
-        print('{:8} {:15.5e} {:11.3e}'.format(iteration+1, energy, de))
+        print('{:>9} {} {:>15.5e} {:>11.3e}'.format(iteration+1, this_kp, energy, de))
 
     def run_convergence_tracker(self):
         '''Runs calculations and checks for convergence.
@@ -159,7 +161,7 @@ class ConvergenceTracker():
             calc.clean()
 
             if self.verbose:
-                self.print_information(iteration, energy, old_energy)
+                self.print_information(iteration, this_kp, energy, old_energy)
 
             self.logger(this_kp, energy)
 
@@ -189,7 +191,10 @@ class ConvergenceTracker():
         '''
 
         for idx, kp in enumerate(self.kpoints_list):
-            self.print_information(idx, kp, self.energies_list[idx])
+            if idx == 0:
+                self.print_information(idx, kp, self.energies_list[idx], 0.0)
+            else:
+                self.print_information(idx, kp, self.energies_list[idx], self.energies_list[idx-1])
 
     def get_log(self):
         '''This method can be used to get list of k-points and energies used
