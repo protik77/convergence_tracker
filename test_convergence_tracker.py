@@ -1,5 +1,5 @@
 import unittest
-from convergence_tracker import ConvergenceTracker
+from ConvergenceTracker import ConvergenceTracker
 import ase
 import os
 from os import path
