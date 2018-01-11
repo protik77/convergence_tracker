@@ -8,7 +8,7 @@ class MultipleStructureConvergenceTracker():
     convergence tracker.
     '''
 
-    def __init__(self, structure_list, verbose, **kwargs):
+    def __init__(self, structure_list, verbose):
 
         self.structure_list = structure_list
         self.verbose = verbose
