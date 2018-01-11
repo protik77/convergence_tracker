@@ -139,6 +139,8 @@ class ConvergenceTracker():
         old_kp = initial_kpoints
         old_energy = 0.0
 
+        print(self.convergence_th)
+
         scaling_factor = self.scale_kpoints()
 
         for iteration in range(self.max_iter):
