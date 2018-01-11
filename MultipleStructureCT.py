@@ -22,20 +22,17 @@ class MultipleStructureConvergenceTracker():
 
         converged_kps = []
 
-        if self.verbose:
-            print('\n\n')
-
         for structure in self.structure_list:
 
             if self.verbose:
-                print(' Running structure from file {}.\n'.format(structure))
+                print('\n\n Running structure from file {}.\n'.format(structure))
 
             ct = ConvergenceTracker(structure_path=structure, verbose=self.verbose, **kwargs)
 
             conv_kp = ct.run_convergence_tracker()
 
             if self.verbose:
-                print('\n\n Converged k-points: {}\n\n'.format(conv_kp))
+                print('\n\n Converged k-points: {}'.format(conv_kp))
 
             converged_kps.append(converged_kps)
 

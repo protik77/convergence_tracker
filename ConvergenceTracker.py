@@ -121,7 +121,7 @@ class ConvergenceTracker():
 
         # write header if it's first iteration
         if iteration == 0:
-            print('{:10} {:12} {:16} {:17}'.format('iteration', 'k-points', 'energy (eV)', 'dE'))
+            print(' {:10} {:12} {:16} {:17}'.format('iteration', 'k-points', 'energy (eV)', 'dE'))
 
         de = energy - old_energy
 
@@ -138,8 +138,6 @@ class ConvergenceTracker():
         initial_kpoints = [1, 1, 1]
         old_kp = initial_kpoints
         old_energy = 0.0
-
-        print(self.convergence_th)
 
         scaling_factor = self.scale_kpoints()
 
