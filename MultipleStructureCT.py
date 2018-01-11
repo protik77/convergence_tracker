@@ -15,9 +15,11 @@ class MultipleStructureConvergenceTracker():
 
 
     def run_multiple(self, **kwargs):
-        ''' Runs each file and prints information if verbose is True
+        ''' Runs each file and prints information if verbose is True.
 
-        :return: Returns a list of convered k-points
+        Parameters for the ConvergenceTracker can be passed as argument.
+
+        :return: Returns a list of convered k-points.
         '''
 
         converged_kps = []

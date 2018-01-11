@@ -21,16 +21,31 @@ ct = ConvergenceTracker()
 converged_kpoints = ct.run_convergence_tracker()
 ```
 
-Other aspects:
-
-* Maximum 500 iterations.
-
 Current features:
 
-* Can read any structure supported by ASE.
-* Can scale `KPOINTS` based on the lattice constants.
-
-Features in progress:
-
-* Printing information in each step.
+* Maximum 500 iterations.
+* Reads any structure supported by ASE.
+* Scales `KPOINTS` based on the lattice constants.
+* If `verbose` is set to `True`, prints information in each step.
 * Logging information.
+
+Multiple Structure Convergence Tracker
+======================================
+
+Multiple Structure Convergence Tracker is a class which uses Convergence Tracker class
+to get a list of converged k-points.
+
+Usage:
+```python
+from convergence_tracker import MultipleStructureConvergenceTracker
+
+structure_list = ['structure1.vasp',
+                  'structure2.vasp',
+                  'dir1\dir2\structure3.vasp',
+                 ]
+
+msct = MultipleStructureConvergenceTracker(structure_list=structure_list, verbose=True)
+
+converged_kpoints_list = msct.run_multiple(convergence_th=5E-3)
+
+```
