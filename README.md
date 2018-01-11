@@ -52,7 +52,7 @@ converged_kpoints_list = msct.run_multiple(convergence_th=5E-3)
 
 ## Example output:
 
-'''bash
+```bash
 
  Running structure from file structure1.vasp.
 
@@ -93,4 +93,4 @@ converged_kpoints_list = msct.run_multiple(convergence_th=5E-3)
  Converged k-points: [5, 9, 5]
 
 
-'''
+```
