@@ -1,4 +1,4 @@
-from ConvergenceTracker import ConvergenceTracker
+from .ConvergenceTracker import ConvergenceTracker
 
 class MultipleStructureConvergenceTracker():
     ''' Runs convergence tracker on multiple structures.
@@ -7,13 +7,13 @@ class MultipleStructureConvergenceTracker():
     on each of them.
     '''
 
-    def __init__(self, structure_list, verbose):
+    def __init__(self, structure_list, verbose, **kwargs):
 
         self.structure_list = structure_list
         self.verbose = verbose
 
 
-    def run_multiple(self):
+    def run_multiple(self, **kwargs):
         ''' Runs each file and prints information if verbose is True
 
         :return: Returns a list of convered k-points
@@ -26,7 +26,7 @@ class MultipleStructureConvergenceTracker():
             if self.verbose:
                 print(' Running structure from file {}.\n'.format(structure))
 
-            ct = ConvergenceTracker(structure_path=structure, verbose=self.verbose)
+            ct = ConvergenceTracker(structure_path=structure, verbose=self.verbose, )
 
             conv_kp = ct.run_convergence_tracker()
 
