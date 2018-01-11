@@ -16,14 +16,14 @@ class ConvergenceTracker():
     other calculators, will raise NotImplementedError.
     '''
 
-    def __init__(self, structure_path='POSCAR', calculator='vasp', convergence_th=1E-3, cutoff=550):
+    def __init__(self, structure_path='POSCAR', verbose=True, calculator='vasp', convergence_th=1E-3, cutoff=550):
 
         self.calculator = calculator
         self.convergence_th = convergence_th
         self.structure_path = structure_path
         self.cutoff = cutoff  # in eV
         self.max_iter = 500 # maximum number of iteration
-        self.verbose = True
+        self.verbose = verbose
         self.kpoints_list = []
         self.energies_list = []
 
