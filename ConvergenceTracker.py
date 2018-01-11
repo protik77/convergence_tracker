@@ -125,7 +125,7 @@ class ConvergenceTracker():
 
         de = energy - old_energy
 
-        print('{:>9} {} {:>15.5e} {:>11.3e}'.format(iteration+1, this_kp, energy, de))
+        print('{:>10} {} {:>15.5e} {:>11.3e}'.format(iteration+1, this_kp, energy, de))
 
     def run_convergence_tracker(self):
         '''Runs calculations and checks for convergence.
