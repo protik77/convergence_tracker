@@ -4,7 +4,8 @@ class MultipleStructureConvergenceTracker():
     ''' Runs convergence tracker on multiple structures.
 
     Given a list of structure file names, runs convergence tracker
-    on each of them.
+    on each of them. Also passes the input parameters to the
+    convergence tracker.
     '''
 
     def __init__(self, structure_list, verbose, **kwargs):
@@ -26,7 +27,7 @@ class MultipleStructureConvergenceTracker():
             if self.verbose:
                 print(' Running structure from file {}.\n'.format(structure))
 
-            ct = ConvergenceTracker(structure_path=structure, verbose=self.verbose, )
+            ct = ConvergenceTracker(structure_path=structure, verbose=self.verbose, **kwargs)
 
             conv_kp = ct.run_convergence_tracker()
 
